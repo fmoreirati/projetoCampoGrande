@@ -8,8 +8,8 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item>
-      <img src="" alt="">
+    <ion-item lines="none">
+      <img src="assets/perfil.png" alt="">
     </ion-item>
 
     <ion-item>
@@ -19,6 +19,10 @@
     <ion-item>
       <ion-label>E-mail: {{user.email}}</ion-label>
     </ion-item>
-
   </ion-list>
+<!-- Botão endereco -->
+  <ion-button routerLink="/tabs/endereco-add/{{key}}">
+    <ion-icon name="map-outline"></ion-icon>
+  </ion-button>
+
 </ion-content>
