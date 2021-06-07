@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Endereco } from "../models/endereco";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { map } from 'rxjs/operators';
+import { User } from "../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,20 @@ export class EnderecoService {
       )
     )
   }
+
+  getAllforUser(userkey: string){
+    return this.firedb.collection<Endereco>("enderecos", ref => ref.where('userkey', '==',userkey)).snapshotChanges()
+    .pipe(
+      map(dados =>
+        dados.map(
+          d => ({
+            key: d.payload.doc.id, ...d.payload.doc.data()
+          })
+        )
+      )
+    )
+  }
+
 
   get(key){
     return this.firedb.collection<Endereco>("enderecos").doc(key).valueChanges();
