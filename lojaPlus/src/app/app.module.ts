@@ -12,6 +12,7 @@ import { AppComponent } from "./app.component";
 import { IonicStorageModule } from "@ionic/storage";
 import { HttpClientModule } from "@angular/common/http";
 
+//Firebase -------------------------
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "../environments/environment";
