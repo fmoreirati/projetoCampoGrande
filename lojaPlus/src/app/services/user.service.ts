@@ -8,7 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root',
 })
-export class UserServiceService {
+export class UserService {
   constructor(
     private http: HttpClient,
     private firedb: AngularFirestore,
