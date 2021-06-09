@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { Storage } from '@ionic/storage';
-import { UserServiceService } from '../../services/user-service.service';
+import { UserService } from '../../services/user.service';
 import { MsgService } from '../../services/msg.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -19,7 +19,7 @@ export class UserAddPage implements OnInit {
   constructor(
     private storage: Storage,
     // public alertController: AlertController,
-    private userService: UserServiceService,
+    private userService: UserService,
     // public toastController: ToastController,
     protected msg: MsgService,
     private router: Router,
