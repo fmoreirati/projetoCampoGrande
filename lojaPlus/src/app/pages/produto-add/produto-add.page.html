@@ -34,8 +34,8 @@
     </ion-item>
 
     <ion-item>
-      <IonLabel>Ativo</IonLabel>
-      <IonToggle value="ativo" onChange="produto.ativo =! produto.ativo" />
+      <ion-label>Ativo</ion-label>
+      <ion-toggle [(ngModel)]="produto.ativo" name="ativo"></ion-toggle>
     </ion-item>
 
     <ion-button expand="block" type="submit" [disabled]="fc.invalid">Salvar</ion-button>

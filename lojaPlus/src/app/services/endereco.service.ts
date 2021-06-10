@@ -31,7 +31,9 @@ export class EnderecoService {
         uf: endereco.uf,
         complemento:endereco.complemento,
         numero: endereco.numero,
-        erro: endereco.erro
+        erro: endereco.erro,
+        principal: endereco.principal,
+        ativo: endereco.ativo,
       }
     )
   }

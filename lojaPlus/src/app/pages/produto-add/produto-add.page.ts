@@ -22,29 +22,65 @@ export class ProdutoAddPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.produtoKey = this.activadeRouter.snapshot.paramMap.get('key');
+    this.getProduto(this.produtoKey)
   }
    
-  salvar() {
-    try {
-      this.msg.presentLoading();  
-      this.produtoService.add(this.produto).then(
+
+  async getProduto(key) {
+    if (key) {
+      await this.produtoService.get(key).subscribe(
         res => {
-          console.log('Dados Salvos firebase...', res);
-          this.msg.dismissLoading();
-          this.msg.presentAlert('Alerta', 'Cadastrado.');
-          this.produto = new Produto();
-          this.router.navigate(['/tabs/user-perfil', this.produtoKey]);
+          this.produto = res;
+          return true;
         },
         error => {
-          console.error("Erro ao salvar.", error);
-          this.msg.dismissLoading();
-          this.msg.presentAlert("Error", "Não foi possivel salvar.");
+          console.log("ERRO:", error);
+          return false;
         }
       )
+    }
+  }
+
+  salvar() {
+    try {
+      this.msg.presentLoading();
+      if (this.produtoKey) {
+        this.produtoService.update(this.produto, this.produtoKey).then(
+          res => {
+            console.log('Dados Salvos firebase...', res);
+            this.msg.dismissLoading();
+            this.msg.presentAlert('Alerta', 'Usuário atualizado.');
+            this.produto = new Produto();
+            this.router.navigate(['']);
+          },
+          error => {
+            console.error("Erro ao salvar.", error);
+            this.msg.dismissLoading();
+            this.msg.presentAlert("Error", "Não foi possivel atualizar.");
+          }
+        )
+      } else {
+        this.produtoService.add(this.produto).then(
+          res => {
+            console.log('Dados Salvos firebase...', res);
+            this.msg.dismissLoading();
+            this.msg.presentAlert('Alerta', 'Usuário cadastrado.');
+            this.produto = new Produto();
+            this.router.navigate(['']);
+          },
+          error => {
+            console.error("Erro ao salvar.", error);
+            this.msg.dismissLoading();
+            this.msg.presentAlert("Error", "Não foi possivel salvar.");
+          }
+        )
+      }
     } catch (error) {
       console.error("Erro ao salvar.", error);
       this.msg.dismissLoading();
       this.msg.presentAlert("Error", "Não foi possivel conectar.");
     }
+
   }
 }

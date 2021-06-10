@@ -7,5 +7,8 @@ export class Endereco {
   bairro: string;
   localidade: string;
   uf: string;
+  //Confirmações e erros
   erro: boolean = false;
+  principal: boolean = false;
+  ativo: boolean = true;
 }
