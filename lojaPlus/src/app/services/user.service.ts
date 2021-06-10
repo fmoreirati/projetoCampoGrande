@@ -24,6 +24,7 @@ export class UserService {
             nome: usuario.nome,
             email: usuario.email,
             senha:null,
+            ativo: true
           });
         },
         erro=>{

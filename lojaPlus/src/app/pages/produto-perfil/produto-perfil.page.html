@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Loja Plus - Perfil do Produto </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item lines="none">
+      <img src="assets/box.png" alt="" />
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Nome: {{produto.nome}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Descricao: {{produto.descricao}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

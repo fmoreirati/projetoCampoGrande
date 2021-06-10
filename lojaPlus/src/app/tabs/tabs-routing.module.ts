@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: 'tab1',
-        loadChildren: () => import('../pages/user-list/user-list.module').then(m => m.UserListPageModule)
+        loadChildren: () => import('../pages/produto-list/produto-list.module').then(m => m.ProdutoListPageModule)
       },
       {
         path: 'tab2',
@@ -34,6 +34,22 @@ const routes: Routes = [
       {
         path: 'endereco-add/:key',
         loadChildren: () => import('../pages/endereco-add/endereco-add.module').then( m => m.EnderecoAddPageModule)
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('../pages/login/login.module').then( m => m.LoginPageModule)
+      },
+      {
+        path: 'produto-add',
+        loadChildren: () => import('../pages/produto-add/produto-add.module').then( m => m.ProdutoAddPageModule)
+      },
+      {
+        path: 'produto-list',
+        loadChildren: () => import('../pages/produto-list/produto-list.module').then( m => m.ProdutoListPageModule)
+      },
+      {
+        path: 'produto-perfil',
+        loadChildren: () => import('../pages/produto-perfil/produto-perfil.module').then( m => m.ProdutoPerfilPageModule)
       },
       {
         path: '',
