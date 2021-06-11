@@ -48,7 +48,7 @@ const routes: Routes = [
         loadChildren: () => import('../pages/produto-list/produto-list.module').then( m => m.ProdutoListPageModule)
       },
       {
-        path: 'produto-perfil',
+        path: 'produto-perfil/:key',
         loadChildren: () => import('../pages/produto-perfil/produto-perfil.module').then( m => m.ProdutoPerfilPageModule)
       },
       {

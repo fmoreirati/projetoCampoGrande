@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item lines="none">
-      <img src="assets/box.png" alt="" />
+  <ion-list lines="none">
+    <ion-item>
+      <img src="assets/box.jpg" alt="" />
     </ion-item>
 
     <ion-item>
@@ -16,6 +16,14 @@
 
     <ion-item>
       <ion-label>Descricao: {{produto.descricao}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Disponiveis: {{produto.quantidade}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="danger"><b>Valor: {{produto.valor |  currency:'BRL' }}</b></ion-label>
     </ion-item>
   </ion-list>
 
