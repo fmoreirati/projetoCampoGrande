@@ -8,26 +8,27 @@ import { Produto } from '../models/produto';
 })
 export class ProdutoService {
 
- 
+  collection = "produtos"
   constructor(
     private firedb:AngularFirestore
   ) { }
 
   add(produto:Produto){
-    return this.firedb.collection<Produto>("produtos").add(
+    return this.firedb.collection<Produto>(this.collection).add(
       {
         nome: produto.nome,
         descricao: produto.descricao,
         quantidade: produto.quantidade,
         valor: produto.valor,
+        fotos:produto.fotos,
         ativo: produto.ativo        
       }
     )
   }
 
   getAll(){
-    //return this.firedb.collection<produto>("produtos").valueChanges()
-    return this.firedb.collection<Produto>("produtos").snapshotChanges()
+    //return this.firedb.collection<produto>(this.collection).valueChanges()
+    return this.firedb.collection<Produto>(this.collection).snapshotChanges()
     .pipe(
       map(dados =>
         dados.map(
@@ -40,7 +41,7 @@ export class ProdutoService {
   }
 
   getAllforUser(userkey: string){
-    return this.firedb.collection<Produto>("produtos", ref => ref.where('userkey', '==',userkey)).snapshotChanges()
+    return this.firedb.collection<Produto>(this.collection, ref => ref.where('userkey', '==',userkey)).snapshotChanges()
     .pipe(
       map(dados =>
         dados.map(
@@ -54,14 +55,14 @@ export class ProdutoService {
 
 
   get(key){
-    return this.firedb.collection<Produto>("produtos").doc(key).valueChanges();
+    return this.firedb.collection<Produto>(this.collection).doc(key).valueChanges();
   }
 
   update(produto:Produto, key:string){
-    return this.firedb.collection<Produto>("produtos").doc(key).update(produto);
+    return this.firedb.collection<Produto>(this.collection).doc(key).update(produto);
   }
 
   delete(key){
-    return this.firedb.collection("produtos").doc(key).delete();
+    return this.firedb.collection(this.collection).doc(key).delete();
   }
 }

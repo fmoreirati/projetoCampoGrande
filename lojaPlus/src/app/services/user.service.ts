@@ -9,6 +9,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   providedIn: 'root',
 })
 export class UserService {
+  collection = "usuarios";
   constructor(
     private http: HttpClient,
     private firedb: AngularFirestore,
@@ -20,10 +21,11 @@ export class UserService {
       .createUserWithEmailAndPassword(usuario.email, usuario.senha)
       .then(
         res => {
-          return this.firedb.collection<User>('usuarios').doc(res.user.uid).set({
+          return this.firedb.collection<User>(this.collection).doc(res.user.uid).set({
             nome: usuario.nome,
             email: usuario.email,
             senha:null,
+            foto: usuario.foto,
             ativo: true
           });
         },
@@ -36,7 +38,7 @@ export class UserService {
   getAll() {
     //return this.firedb.collection<User>("usuarios").valueChanges()
     return this.firedb
-      .collection<User>('usuarios')
+      .collection<User>(this.collection)
       .snapshotChanges()
       .pipe(
         map((dados) =>
@@ -49,14 +51,14 @@ export class UserService {
   }
 
   get(key) {
-    return this.firedb.collection<User>('usuarios').doc(key).valueChanges();
+    return this.firedb.collection<User>(this.collection).doc(key).valueChanges();
   }
 
   update(user: User, key: string) {
-    return this.firedb.collection<User>('usuarios').doc(key).update(user);
+    return this.firedb.collection<User>(this.collection).doc(key).update(user);
   }
 
   delete(key) {
-    return this.firedb.collection('usuarios').doc(key).delete();
+    return this.firedb.collection(this.collection).doc(key).delete();
   }
 }

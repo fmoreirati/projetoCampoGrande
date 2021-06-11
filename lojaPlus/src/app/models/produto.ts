@@ -4,4 +4,5 @@ export class Produto {
   valor: string;
   quantidade: number;
   ativo: boolean = true;
+  fotos: string[] = [];
 }
