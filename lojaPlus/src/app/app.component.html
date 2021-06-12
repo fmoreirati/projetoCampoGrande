@@ -1,3 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title slot="start">
+      Loja Plus
+    </ion-title>
+    <ion-title slot="end">
+
+      <ion-chip routerLink="/tabs/login" *ngIf="auth.user | async as user">      
+        <ion-avatar>
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-avatar>
+        <ion-label>
+          Usuario {{user}}
+        </ion-label>
+      </ion-chip>
+
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
