@@ -16,6 +16,7 @@ export class ProdutoService {
   add(produto:Produto){
     return this.firedb.collection<Produto>(this.collection).add(
       {
+        key:null,
         nome: produto.nome,
         descricao: produto.descricao,
         quantidade: produto.quantidade,

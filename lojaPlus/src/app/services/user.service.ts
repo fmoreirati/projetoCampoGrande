@@ -4,6 +4,7 @@ import { User } from '../models/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private firedb: AngularFirestore,
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
   ) {}
 
   add(usuario: User) {
@@ -22,11 +23,12 @@ export class UserService {
       .then(
         res => {
           return this.firedb.collection<User>(this.collection).doc(res.user.uid).set({
+            key: null,
             nome: usuario.nome,
             email: usuario.email,
             senha:null,
             foto: usuario.foto,
-            ativo: true
+            ativo: true,
           });
         },
         erro=>{
@@ -60,5 +62,18 @@ export class UserService {
 
   delete(key) {
     return this.firedb.collection(this.collection).doc(key).delete();
+  }
+
+  
+  login(email:string , senha:string) {
+    return this.auth.signInWithEmailAndPassword(email , senha);
+  }
+
+  loginGoogleWEB(){
+    return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+
+  logout(){
+    return this.auth.signOut();
   }
 }

@@ -1,4 +1,5 @@
 export class Endereco {
+  key: string;
   userkey: string;
   numero: string;
   complemento: string = null;

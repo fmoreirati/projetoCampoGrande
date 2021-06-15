@@ -1,4 +1,5 @@
 export class Produto {
+  key: string;
   nome: string;
   descricao: string;
   valor: string;

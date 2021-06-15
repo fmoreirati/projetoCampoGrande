@@ -18,17 +18,21 @@
       <ion-label>E-mail: {{user.email}}</ion-label>
     </ion-item>
   </ion-list>
-  <!-- Botão endereco -->
+  
+  <!-- Botões -->
   <ion-button routerLink="/tabs/endereco-add/{{key}}">
     <ion-icon name="map-outline"></ion-icon>
+  </ion-button>
+  <ion-button (click)="sair()">
+    <ion-icon name="log-out-outline"></ion-icon>  
   </ion-button>
 
   <ion-list>
     <ion-item lines="" *ngFor="let endereco of listEnderecos ; index as x ">
       <ion-label>
         {{ x + 1}} - Endereco: {{endereco.logradouro}} - CEP:
-        {{endereco.cep}}</ion-label
-      >
+        {{endereco.cep}}
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
