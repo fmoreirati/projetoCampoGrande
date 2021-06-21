@@ -1,5 +1,7 @@
 {
   "name": "lojaPlus",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
