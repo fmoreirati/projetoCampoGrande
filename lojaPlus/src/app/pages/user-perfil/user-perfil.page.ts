@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Endereco } from 'src/app/models/endereco';
 import { User } from 'src/app/models/user';
 import { EnderecoService } from 'src/app/services/endereco.service';
@@ -12,17 +12,17 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-perfil.page.scss'],
 })
 export class UserPerfilPage implements OnInit {
- 
-  key:string = null;
-  user: User = new User;
+  key: string = null;
+  user: User = new User();
   listEnderecos: Endereco[];
 
   constructor(
     private activatedRouter: ActivatedRoute,
-    private userService:UserService,
-    private enderecoService:EnderecoService,
-    private msg:MsgService
-  ) { }
+    private userService: UserService,
+    private enderecoService: EnderecoService,
+    private msg: MsgService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.key = this.activatedRouter.snapshot.paramMap.get('key');
@@ -33,26 +33,32 @@ export class UserPerfilPage implements OnInit {
   async getUser(key) {
     if (key) {
       await this.userService.get(key).subscribe(
-        res => {
+        (res) => {
           this.user = res;
           return true;
         },
-        error => {
-          console.log("ERRO:", error);
+        (error) => {
+          console.log('ERRO:', error);
           return false;
         }
-      )
+      );
     }
   }
 
-  async getAllEndererecos(key){
+  async getAllEndererecos(key) {
     await this.enderecoService.getAllforUser(key).subscribe(
-      res =>{
+      (res) => {
         this.listEnderecos = res;
-      }, 
-      error =>{
-       this.msg.presentAlert("Error", "Erro ao listar os enderecos!");
+      },
+      (error) => {
+        this.msg.presentAlert('Error', 'Erro ao listar os enderecos!');
       }
-    )
+    );
+  }
+
+  sair() {
+    this.userService.logout().then((res) => {
+      this.router.navigate(['']);
+    });
   }
 }

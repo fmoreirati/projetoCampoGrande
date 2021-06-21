@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Loja Plus
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let produto of produtos">
+        <ion-card  routerLink="/tabs/produto-perfil/{{produto.key}}">
+          <ion-card-header>
+            <ion-card-subtitle></ion-card-subtitle>
+            <ion-card-title><b>{{produto.nome}}</b></ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <img src="assets/box.jpg" alt="" />
+            </ion-item>
+            <ion-label>
+              <p>{{produto.descricao}} </p>
+              <p class="red"><b>{{produto.valor | currency: "BRL"}}</b></p>
+            </ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

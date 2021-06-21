@@ -8,8 +8,8 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../pages/user-list/user-list.module').then(m => m.UserListPageModule)
+        path: 'home',
+        loadChildren: () => import('../pages/home/home.module').then( m => m.HomePageModule)
       },
       {
         path: 'tab2',
@@ -36,15 +36,31 @@ const routes: Routes = [
         loadChildren: () => import('../pages/endereco-add/endereco-add.module').then( m => m.EnderecoAddPageModule)
       },
       {
+        path: 'login',
+        loadChildren: () => import('../pages/login/login.module').then( m => m.LoginPageModule)
+      },
+      {
+        path: 'produto-add',
+        loadChildren: () => import('../pages/produto-add/produto-add.module').then( m => m.ProdutoAddPageModule)
+      },
+      {
+        path: 'produto-list',
+        loadChildren: () => import('../pages/produto-list/produto-list.module').then( m => m.ProdutoListPageModule)
+      },
+      {
+        path: 'produto-perfil/:key',
+        loadChildren: () => import('../pages/produto-perfil/produto-perfil.module').then( m => m.ProdutoPerfilPageModule)
+      },
+      {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/home',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
   }
 ];
